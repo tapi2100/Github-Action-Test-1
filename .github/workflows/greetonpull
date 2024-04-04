@@ -1,0 +1,12 @@
+name: Greet on first pull request
+on:
+  pull-request:
+    types:
+      - opened
+jobs:
+      - name: Comment on new pull-request
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number=1 }}
+          body: |
+           Good job on opening a pull-request. Well done dude!
