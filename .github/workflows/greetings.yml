@@ -3,7 +3,6 @@ name: Lab 3 Greet user when opening the first pull request
 on:
   pull_request:
     types: [opened]
-	
 jobs:
   greeting:
     runs-on: ubuntu-latest
