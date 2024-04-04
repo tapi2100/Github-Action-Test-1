@@ -2,8 +2,7 @@ name: Label & comment issues #the name of the workflow
 on: # This action will trigger when an issue is reopened or opened.
   issues:
     types:
-      - reopened
-      - opened
+      - closed
 jobs: # The jobs that run in this workflow
   label_issues: # the first job is named as label_issues
     runs-on: ubuntu-latest # This job will run on the latest version of Ubuntu.
@@ -18,14 +17,14 @@ jobs: # The jobs that run in this workflow
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ["issue", "fix", "BUGI"]
+              labels: ["issue", "fix"]
             })
       - name: Comment on new issue #this is another step that comments on the issue 
         uses: peter-evans/create-or-update-comment@v1 # This step uses the "peter-evans/create-or-update-comment" action to create or update a comment on the issue.
         with:
           issue-number: ${{ github.event.issue.number }} # The issue number is obtained from the context of the event that triggered the action.
           body: | # The body of the comment is a message thanking the user for opening the issue.
-           Thanks for opening this issue! We'll take a look as soon as possible.
+           Issue is now closed. Well done dude!
 
 # Comment on when an issue is closed
 
